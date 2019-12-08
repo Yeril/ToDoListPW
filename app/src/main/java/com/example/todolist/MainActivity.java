@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.example.todolist.dataBase.DataManager;
 import com.example.todolist.dataBase.OpenHelper;
 import com.example.todolist.dataBase.Task.Task;
+import com.example.todolist.dataBase.TaskItem.TaskItem;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,8 +40,13 @@ public class MainActivity extends AppCompatActivity {
 //                "jhdjhgfjhgfjhgfjhg"
 //        );
 
-        dataManager.updateTaskName("dupa8",1);
-        dataManager.updateTaskReminderDate(LocalDateTime.parse("2019-12-24T12:00:01"),1);
+//        dataManager.updateTaskName("dupa8",1);
+//        dataManager.updateTaskReminderDate(LocalDateTime.parse("2019-12-24T12:00:01"),1);
+
+//        dataManager.addNewTaskItem("Krowa");
+//        dataManager.addNewTaskItem("Kon");
+//        dataManager.addNewTaskItem("cos");
+//        dataManager.updateItemName("Kaczka", 3);
 
 //        ArrayList<Task> stringArrayList = new ArrayList<>();  // przykładowa statyczna lista
 //        stringArrayList.add(new Task());
@@ -50,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.List);
 
-        ArrayAdapter<Task> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getAllTasks());
+        ArrayAdapter<TaskItem> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getAllTaskItems());
         listView.setAdapter(arrayAdapter);
     }
 
