@@ -5,6 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.example.todolist.dataBase.Task.Task;
 import com.example.todolist.dataBase.Task.TaskDAO;
+import com.example.todolist.dataBase.TaskItem.TaskItem;
+import com.example.todolist.dataBase.TaskItem.TaskItemDAO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,10 +14,12 @@ import java.util.List;
 public class DataManager {
     public SQLiteDatabase db;
     private TaskDAO taskDAO;
+    private TaskItemDAO taskItemDAO;
 
     public DataManager(SQLiteDatabase db) {
         this.db = db;
         taskDAO = new TaskDAO(this.db);
+        taskItemDAO = new TaskItemDAO(this.db);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -38,5 +42,17 @@ public class DataManager {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateTaskReminderDate(LocalDateTime newTime, int taskId) {
         taskDAO.updateTaskReminder(newTime, taskId);
+    }
+
+    public void addNewTaskItem(String itemName) {
+        taskItemDAO.save(new TaskItem(itemName));
+    }
+
+    public List<TaskItem> getAllTaskItems() {
+        return taskItemDAO.getAll();
+    }
+
+    public void updateItemName(String newItemName, int itemId) {
+        taskItemDAO.updateTaskName(newItemName, itemId);
     }
 }
