@@ -7,6 +7,8 @@ import com.example.todolist.dataBase.Task.Task;
 import com.example.todolist.dataBase.Task.TaskDAO;
 import com.example.todolist.dataBase.TaskItem.TaskItem;
 import com.example.todolist.dataBase.TaskItem.TaskItemDAO;
+import com.example.todolist.dataBase.TaskTaskItemAsoc.TaskTaskItemAcosDAO;
+import com.example.todolist.dataBase.TaskTaskItemAsoc.TaskTaskItemAsoc;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,11 +17,13 @@ public class DataManager {
     public SQLiteDatabase db;
     private TaskDAO taskDAO;
     private TaskItemDAO taskItemDAO;
+    private TaskTaskItemAcosDAO taskTaskItemAcosDAO;
 
     public DataManager(SQLiteDatabase db) {
         this.db = db;
         taskDAO = new TaskDAO(this.db);
         taskItemDAO = new TaskItemDAO(this.db);
+        taskTaskItemAcosDAO = new TaskTaskItemAcosDAO(this.db);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -44,8 +48,11 @@ public class DataManager {
         taskDAO.updateTaskReminder(newTime, taskId);
     }
 
-    public void addNewTaskItem(String itemName) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void addNewTaskItem(String itemName, int taskId) {
         taskItemDAO.save(new TaskItem(itemName));
+        int taskItemId = taskItemDAO.getIdByItemName(itemName);
+        taskTaskItemAcosDAO.save(new TaskTaskItemAsoc(taskId, taskItemId));
     }
 
     public List<TaskItem> getAllTaskItems() {
@@ -54,5 +61,15 @@ public class DataManager {
 
     public void updateItemName(String newItemName, int itemId) {
         taskItemDAO.updateTaskName(newItemName, itemId);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Task> getTasksWithItems() {
+        List<Task> tasks = getAllTasks();
+        for (Task task : tasks) {
+            task.setTaskItems(taskTaskItemAcosDAO.getAllTaskItems(task));
+        }
+
+        return tasks;
     }
 }

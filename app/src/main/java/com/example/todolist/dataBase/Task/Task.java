@@ -1,6 +1,9 @@
 package com.example.todolist.dataBase.Task;
 
+import com.example.todolist.dataBase.TaskItem.TaskItem;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Task {
     private int id;
@@ -8,6 +11,8 @@ public class Task {
     private String taskDescription;
     private LocalDateTime taskReminder;
     private String taskReminderDescription;
+
+    private List<TaskItem> taskItems;
 
     public Task(String taskName, String taskDescription, LocalDateTime taskReminder, String taskReminderDescription) {
         this.taskName = taskName;
@@ -59,14 +64,30 @@ public class Task {
         this.taskReminderDescription = taskReminderDescription;
     }
 
+    public List<TaskItem> getTaskItems() {
+        return taskItems;
+    }
+
+    public void setTaskItems(List<TaskItem> taskItems) {
+        this.taskItems = taskItems;
+    }
+
     @Override
     public String toString() {
+        StringBuilder tasks = new StringBuilder();
+        for (TaskItem taskItem : taskItems) {
+            tasks
+                    .append("\n\t\t")
+                    .append(taskItem.getItemName());
+        }
+
         return "Task{" +
                 "id=" + id +
                 ", taskName='" + taskName + '\'' +
                 ", taskDescription='" + taskDescription + '\'' +
                 ", taskReminder=" + taskReminder +
                 ", taskReminderDescription='" + taskReminderDescription + '\'' +
+                tasks + "\n" +
                 '}';
     }
 }
