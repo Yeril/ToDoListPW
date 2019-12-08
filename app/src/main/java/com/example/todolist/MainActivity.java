@@ -39,6 +39,17 @@ public class MainActivity extends AppCompatActivity {
 //                LocalDateTime.parse("2019-12-24T12:00:00"),
 //                "jhdjhgfjhgfjhgfjhg"
 //        );
+//
+//        dataManager.addNewTask(
+//                "Task2",
+//                "sdfadfadsf ",
+//                LocalDateTime.parse("2019-12-24T12:00:00"),
+//                "jhdjhgfjhgfjhgfjhg"
+//        );
+//
+//        dataManager.addNewTaskItem("Krowa", 1);
+//        dataManager.addNewTaskItem("Kurczak", 1);
+        dataManager.addNewTaskItem("Pies", 2);
 
 //        dataManager.updateTaskName("dupa8",1);
 //        dataManager.updateTaskReminderDate(LocalDateTime.parse("2019-12-24T12:00:01"),1);
@@ -56,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.List);
 
-        ArrayAdapter<TaskItem> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getAllTaskItems());
+        ArrayAdapter<Task> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getTasksWithItems());
         listView.setAdapter(arrayAdapter);
     }
 
