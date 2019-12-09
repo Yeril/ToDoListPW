@@ -1,5 +1,7 @@
 package com.example.todolist;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.view.Menu;
@@ -8,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import com.example.todolist.dataBase.DataManager;
 import com.example.todolist.dataBase.OpenHelper;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestSmsPermission();
 
         openHelper = new OpenHelper(this);
         db = openHelper.getWritableDatabase();
@@ -69,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<Task> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getTasksWithItems());
         listView.setAdapter(arrayAdapter);
+    }
+
+    private void requestSmsPermission() {
+        String permission = Manifest.permission.RECEIVE_SMS;
+        int grant_permission = ContextCompat.checkSelfPermission(this, permission);
+        if ( grant_permission != PackageManager.PERMISSION_GRANTED) {
+            String[] permission_list = new String[1];
+            permission_list[0] = permission;
+            ActivityCompat.requestPermissions(this, permission_list, 1);
+        }
     }
 
     @Override
