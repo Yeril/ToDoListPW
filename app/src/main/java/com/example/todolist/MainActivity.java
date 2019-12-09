@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         dataManager = new DataManager(db);
 
 //        dataManager.addNewTask(
-//                "Task1",
-//                "sdfadfadsf ",
-//                LocalDateTime.parse("2019-12-24T12:00:00"),
-//                "jhdjhgfjhgfjhgfjhg"
+//                "Task3",
+//                "Opis zadanie ",
+//                LocalDateTime.parse("2019-12-09T12:00:00"),
+//                "Opis przypomnienia"
 //        );
 //
 //        dataManager.addNewTask(
@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 //                "jhdjhgfjhgfjhgfjhg"
 //        );
 //
-//        dataManager.addNewTaskItem("Krowa", 1);
+//        dataManager.addNewTaskItem("", 1);
 //        dataManager.addNewTaskItem("Kurczak", 1);
-        dataManager.addNewTaskItem("Pies", 2);
+//        dataManager.addNewTaskItem("Pies", 2);
 
-//        dataManager.updateTaskName("dupa8",1);
+//        dataManager.updateTaskName("nowaNazwa",1);
 //        dataManager.updateTaskReminderDate(LocalDateTime.parse("2019-12-24T12:00:01"),1);
 
 //        dataManager.addNewTaskItem("Krowa");
@@ -65,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
 //        dataManager.addNewTaskItem("cos");
 //        dataManager.updateItemName("Kaczka", 3);
 
-//        ArrayList<Task> stringArrayList = new ArrayList<>();  // przykładowa statyczna lista
-//        stringArrayList.add(new Task());
-//        stringArrayList.add(new String("Zakupy"));
-//        stringArrayList.add(new String("Praca"));
-//        stringArrayList.add(new String("SMS"));
 
         ListView listView = findViewById(R.id.List);
 

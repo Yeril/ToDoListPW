@@ -10,7 +10,7 @@ import com.example.todolist.dataBase.TaskTaskItemAsoc.TaskTaskItemAcosTable;
 public class OpenHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static String DB_NAME = "myDatabase6.db";
+    private static String DB_NAME = "myDatabase8.db";
 
     public OpenHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
