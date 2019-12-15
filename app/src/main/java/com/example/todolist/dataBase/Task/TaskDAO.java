@@ -91,4 +91,29 @@ public class TaskDAO implements DAO<Task> {
         stmt.execute();
         stmt.close();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Task getTaskById(int taskId) {
+        List<Task> tasks = new ArrayList<>();
+
+        String sql = "select * from " + TaskTable.TABLE_NAME +
+                " where " + TaskTable.TaskColumns.ID + " = " +
+                taskId
+                + ";";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            Task task = new Task();
+            task.setId(cursor.getInt(0));
+            task.setTaskName(cursor.getString(1));
+            task.setTaskDescription(cursor.getString(2));
+            task.setTaskReminderDescription(cursor.getString(4));
+
+            LocalDateTime date = LocalDateTime.parse(cursor.getString(3).replace(" ","T"));
+            task.setTaskReminder(date);
+
+            tasks.add(task);
+        }
+
+        return tasks.get(0);
+    }
 }
