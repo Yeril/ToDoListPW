@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ToDoList</string>
     <string name="add_list">Dodaj nową listę</string>
+    <string name="darkmode">Tryb ciemny</string>
 </resources>
