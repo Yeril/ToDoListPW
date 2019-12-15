@@ -8,12 +8,12 @@
 <!--        android:title="Tryb ciemny"-->
 <!--        app:showAsAction="never" />-->
 
-    <item
-        android:id="@+id/action_settings"
-        android:title="Tryb ciemny"
-        android:checkable="true"
-        app:actionViewClass="android.widget.Switch"
-        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/action_settings"-->
+<!--        android:title="Tryb ciemny"-->
+<!--        android:checkable="true"-->
+<!--        app:actionViewClass="android.widget.Switch"-->
+<!--        app:showAsAction="never" />-->
 
 <!--    <Switch-->
 <!--        android:id="@+id/myswitch"-->

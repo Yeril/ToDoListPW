@@ -9,6 +9,7 @@ import android.os.Build;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -34,37 +35,43 @@ public class MainActivity extends AppCompatActivity {
     private OpenHelper openHelper;
     private SQLiteDatabase db;
     private DataManager dataManager;
-    private Switch mySwitch;
+
+
     SharedPref sharedPref;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
+
+
         if (sharedPref.loadNightModeState() == true) {
             setTheme(R.style.darktheme);
         } else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mySwitch = (Switch)findViewById(R.id.action_settings);
+
+        Switch mySwitch = (Switch) findViewById(R.id.switch1);
 
         if (sharedPref.loadNightModeState() == true) {
             mySwitch.setChecked(true);
         }
 
 
-        //tu wywala  "Attempt to invoke virtual method 'void android.widget.Switch.setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener)' on a null object reference"
-//        mySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-//            if (isChecked) {
-//                sharedPref.setNightModeState(true);
-//                restartApp();
-//            }
-//            else {
-//                sharedPref.setNightModeState(false);
-//                restartApp();
-//            }
-//        });
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    sharedPref.setNightModeState(true);
+                    restartApp();
+                }
+                else {
+                    sharedPref.setNightModeState(false);
+                    restartApp();
+                }
+            }
+        });
 
         requestSmsPermission();
 
@@ -104,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Task> arrayAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataManager.getTasksWithItems());
         listView.setAdapter(arrayAdapter);
     }
+
+
+
+
 
     private void requestSmsPermission() {
         String permission = Manifest.permission.RECEIVE_SMS;
