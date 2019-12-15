@@ -81,13 +81,8 @@ public class Task {
                     .append(taskItem.getItemName());
         }
 
-        return "Task{" +
-                "id=" + id +
-                ", taskName='" + taskName + '\'' +
-                ", taskDescription='" + taskDescription + '\'' +
-                ", taskReminder=" + taskReminder +
-                ", taskReminderDescription='" + taskReminderDescription + '\'' +
-                tasks + "\n" +
-                '}';
+        return  " " + taskName + "\n" +
+                " " + taskDescription;
+
     }
 }
