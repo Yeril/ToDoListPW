@@ -13,9 +13,17 @@ import com.example.todolist.dataBase.DataManager;
 public class AddNewTaskItem extends AppCompatActivity {
 
     public static DataManager dataManager;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+
+        if (sharedPref.loadNightModeState() == true) {
+            setTheme(R.style.darktheme);
+        } else setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_task_item);
         dataManager = MainActivity.getDataManager();

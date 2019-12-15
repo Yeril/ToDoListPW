@@ -15,9 +15,16 @@ import java.time.LocalDateTime;
 public class AddNewList extends AppCompatActivity {
 
     public static DataManager dataManager;
-
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+
+        if (sharedPref.loadNightModeState() == true) {
+            setTheme(R.style.darktheme);
+        } else setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_list);
         dataManager = MainActivity.getDataManager();

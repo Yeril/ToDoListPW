@@ -3,4 +3,12 @@
     <string name="app_name">ToDoList</string>
     <string name="add_list">Add new list</string>
     <string name="darkmode">Dark mode</string>
+    <string name="task_name">Task Name</string>
+    <string name="task_description">Task Description</string>
+    <string name="task_date">Date</string>
+    <string name="task_reminder_description">Task reminder description</string>
+    <string name="add_new_task_item">Add new task item</string>
+    <string name="new_task_item_name">New task item name</string>
+    <string name="save_new_task_item">Save new task item</string>
+    <string name="update_task">Update task</string>
 </resources>

@@ -17,10 +17,17 @@ public class TaskScreen extends AppCompatActivity {
 
     public static DataManager dataManager;
     private Task task;
+    SharedPref sharedPref;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+
+        if (sharedPref.loadNightModeState() == true) {
+            setTheme(R.style.darktheme);
+        } else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_screen);
         dataManager = MainActivity.getDataManager();

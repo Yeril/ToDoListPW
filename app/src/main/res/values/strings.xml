@@ -2,4 +2,12 @@
     <string name="app_name">ToDoList</string>
     <string name="add_list">Dodaj nową listę</string>
     <string name="darkmode">Tryb ciemny</string>
+    <string name="task_name">Nazwa zadania</string>
+    <string name="task_description">Opis zadania</string>
+    <string name="task_date">Data zadania</string>
+    <string name="task_reminder_description">Treść przypomnienia</string>
+    <string name="add_new_task_item">Dodaj nowe zadanie</string>
+    <string name="new_task_item_name">Nazwa nowego zadania</string>
+    <string name="save_new_task_item">Zapisz nowe zadanie</string>
+    <string name="update_task">Zaktualizuj zadanie</string>
 </resources>
