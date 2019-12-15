@@ -44,6 +44,11 @@ public class DataManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    public Task getTaskById(int taskId) {
+        return taskDAO.getTaskById(taskId);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateTaskReminderDate(LocalDateTime newTime, int taskId) {
         taskDAO.updateTaskReminder(newTime, taskId);
     }
@@ -55,8 +60,12 @@ public class DataManager {
         taskTaskItemAcosDAO.save(new TaskTaskItemAsoc(taskId, taskItemId));
     }
 
-    public List<TaskItem> getAllTaskItems() {
+    public List<TaskItem> getAllTasksItems() {
         return taskItemDAO.getAll();
+    }
+
+    public List<TaskItem> getAllTaskItems(Task task) {
+        return taskTaskItemAcosDAO.getAllTaskItems(task);
     }
 
     public void updateItemName(String newItemName, int itemId) {
