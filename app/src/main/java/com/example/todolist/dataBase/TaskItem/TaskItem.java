@@ -29,6 +29,6 @@ public class TaskItem {
 
     @Override
     public String toString() {
-        return "id: " + id + ", name: " + itemName + ' ';
+        return itemName + ' ';
     }
 }
