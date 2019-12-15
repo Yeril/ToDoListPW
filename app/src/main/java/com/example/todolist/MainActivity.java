@@ -1,19 +1,26 @@
 package com.example.todolist;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.widget.Switch;
+
 import com.example.todolist.dataBase.DataManager;
 import com.example.todolist.dataBase.OpenHelper;
 import com.example.todolist.dataBase.Task.Task;
@@ -27,12 +34,38 @@ public class MainActivity extends AppCompatActivity {
     private OpenHelper openHelper;
     private SQLiteDatabase db;
     private DataManager dataManager;
+    private Switch mySwitch;
+    SharedPref sharedPref;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+        if (sharedPref.loadNightModeState() == true) {
+            setTheme(R.style.darktheme);
+        } else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mySwitch = (Switch)findViewById(R.id.action_settings);
+
+        if (sharedPref.loadNightModeState() == true) {
+            mySwitch.setChecked(true);
+        }
+
+
+        //tu wywala  "Attempt to invoke virtual method 'void android.widget.Switch.setOnCheckedChangeListener(android.widget.CompoundButton$OnCheckedChangeListener)' on a null object reference"
+//        mySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            if (isChecked) {
+//                sharedPref.setNightModeState(true);
+//                restartApp();
+//            }
+//            else {
+//                sharedPref.setNightModeState(false);
+//                restartApp();
+//            }
+//        });
+
         requestSmsPermission();
 
         openHelper = new OpenHelper(this);
@@ -87,5 +120,13 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         ((MenuInflater) inflater).inflate(R.menu.settings_menu, menu);
         return true;
+    }
+
+
+
+    public void restartApp(){
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }
