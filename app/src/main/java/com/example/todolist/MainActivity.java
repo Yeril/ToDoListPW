@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        startService(new Intent(this, MyService.class));
+
         sharedPref = new SharedPref(this);
 
 
@@ -153,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-        public static DataManager getDataManager () {
-            return dataManager;
-        }
+    public static DataManager getDataManager() {
+        return dataManager;
+    }
 }
 
