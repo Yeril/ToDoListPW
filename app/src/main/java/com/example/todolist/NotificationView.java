@@ -12,7 +12,7 @@ public class NotificationView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_view);
-        String message=getIntent().getStringExtra("message");
+        String message = getIntent().getStringExtra("message");
         textView.setText(message);
     }
 }
