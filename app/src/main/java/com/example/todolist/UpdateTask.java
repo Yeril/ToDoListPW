@@ -40,7 +40,7 @@ public class UpdateTask extends AppCompatActivity {
                 String newName = editText1.getText().toString();
                 String newDate = editText2.getText().toString();
 
-                if (!newName.equals("Task name")) {
+                if (!newName.equals("Task Name")) {
                     dataManager.updateTaskName(
                             newName,
                             task_id
