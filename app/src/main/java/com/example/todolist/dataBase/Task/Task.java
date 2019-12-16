@@ -74,14 +74,14 @@ public class Task {
 
     @Override
     public String toString() {
-        StringBuilder tasks = new StringBuilder();
-        for (TaskItem taskItem : taskItems) {
-            tasks
-                    .append("\n\t\t")
-                    .append(taskItem.getItemName());
-        }
+//        StringBuilder tasks = new StringBuilder();
+//        for (TaskItem taskItem : taskItems) {
+//            tasks
+//                    .append("\n\t\t")
+//                    .append(taskItem.getItemName());
+//        }
 
-        return  " " + taskName + "\n" +
+        return " " + taskName + "\n" +
                 " " + taskDescription;
 
     }
